@@ -1,6 +1,6 @@
-FROM ubuntu:16.04
+FROM i386/ubuntu:16.04
 
-ARG S6_OVERLAY_VERSION=v1.17.2.0
+ARG S6_OVERLAY_VERSION=v1.19.0.0
 ARG DEBIAN_FRONTEND="noninteractive"
 ENV TERM="xterm" LANG="C.UTF-8" LC_ALL="C.UTF-8"
 
@@ -18,8 +18,8 @@ RUN \
     && \
 
 # Fetch and extract S6 overlay
-    curl -J -L -o /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz && \
-    tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
+    curl -J -L -o /tmp/s6-overlay-x86.tar.gz https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-x86.tar.gz && \
+    tar xzf /tmp/s6-overlay-x86.tar.gz -C / && \
 
 # Add user
     useradd -U -d /config -s /bin/false plex && \
@@ -45,8 +45,8 @@ VOLUME /config /transcode
 ENV CHANGE_CONFIG_DIR_OWNERSHIP="true" \
     HOME="/config"
 
-ARG TAG=beta
-ARG URL=
+ARG TAG=stable
+ARG URL=https://downloads.plex.tv/plex-media-server-new/1.18.7.2438-f342a5a43/debian/plexmediaserver_1.18.7.2438-f342a5a43_i386.deb
 
 COPY root/ /
 
