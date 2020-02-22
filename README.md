@@ -1,4 +1,4 @@
-# Official Docker container for Plex Media Server
+# Unofficial i386 Docker container for Plex Media Server
 
 # plexinc/pms-docker
 
